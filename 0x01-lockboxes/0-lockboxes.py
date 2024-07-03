@@ -10,6 +10,9 @@ This is a method that determines if all the boxes can be opened.
 
 def canUnlockAll(boxes):
     """Implementation of lockbox algorithm."""
+    if not boxes:
+        return False
+
     opened = set()
     stack = [0]
 

@@ -8,20 +8,18 @@ This is a method that determines if all the boxes can be opened.
 """
 
 
-def open(key, opened, map):
-    """Helper function to do recursion."""
-    opened.add(key)
-    print(f"in map[{key}] {map[key]} -- opened {opened}")
-    for key in map[key]:
-        if key not in map:
-            continue
-        if key not in opened:
-            open(key, opened, map)
-
-
 def canUnlockAll(boxes):
-    """Implementation of lockboxes."""
+    """Implementation of lockbox algorithm."""
     opened = set()
-    map = {idx: array for idx, array in enumerate(boxes)}
-    open(0, opened, map)
-    return len(opened) == len(boxes)
+    stack = [0]
+
+    while stack:
+        idx = stack.pop()
+        # print(f"in box[{idx}] {boxes[idx]}, opened {opened}, stack {stack}")
+        if idx not in opened:
+            opened.add(idx)
+            for key in boxes[idx]:
+                if key not in opened and key not in stack:
+                    stack.append(key)
+
+    return (len(opened) == len(boxes))

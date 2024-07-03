@@ -10,21 +10,18 @@ This is a method that determines if all the boxes can be opened.
 
 def open(key, opened, map):
     """Helper function to do recursion."""
-    # print(f"in map[{key}] {map[key]} -- opened {opened}")
-    opened.append(key)
+    opened.add(key)
+    print(f"in map[{key}] {map[key]} -- opened {opened}")
     for key in map[key]:
         if key not in map:
             continue
         if key not in opened:
-            return open(key, opened, map)
-    return set(opened)
+            open(key, opened, map)
 
 
 def canUnlockAll(boxes):
     """Implementation of lockboxes."""
-    opened = [0]
+    opened = set()
     map = {idx: array for idx, array in enumerate(boxes)}
-
     open(0, opened, map)
-
     return len(opened) == len(boxes)

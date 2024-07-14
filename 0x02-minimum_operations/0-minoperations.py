@@ -14,7 +14,7 @@ def recurse(num_clip: Tuple[int, int], ops: int, n: int) -> int:
     res_paste = recurse((num + clip, clip), ops+1, n)
     res_copy_n_paste = recurse((num + num, num), ops+2, n)
 
-    print(f"P: {res_paste}, CP: {res_copy_n_paste}")
+    # print(f"P: {res_paste}, CP: {res_copy_n_paste}")
 
     if res_paste > n and res_copy_n_paste > n:
         return 0
@@ -26,8 +26,3 @@ def recurse(num_clip: Tuple[int, int], ops: int, n: int) -> int:
 def minOperations(n):
     """Minimum operations to achieve a number."""
     return recurse((2, 1), 2, n)
-
-
-if __name__ == '__main__':
-
-    print(minOperations(12))

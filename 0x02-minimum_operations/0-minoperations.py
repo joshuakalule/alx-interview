@@ -1,28 +1,23 @@
 #!/usr/bin/python3
 """Minimum operations."""
 
-from typing import Tuple
 
-
-def recurse(num_clip: Tuple[int, int], ops: int, n: int) -> int:
-    """Handle recursion."""
-    num, clip = num_clip
-    if num == n:
-        return ops
-    if num <= 0 | num > n | clip >= n:
-        return ops
-    res_paste = recurse((num + clip, clip), ops+1, n)
-    res_copy_n_paste = recurse((num + num, num), ops+2, n)
-
-    # print(f"P: {res_paste}, CP: {res_copy_n_paste}")
-
-    if res_paste > n and res_copy_n_paste > n:
+def minOperations(n: int) -> int:
+    if n <= 1:
         return 0
-    if min(res_paste, res_copy_n_paste) == 0:
-        return max(res_paste, res_copy_n_paste)
-    return min(res_paste, res_copy_n_paste)
 
+    # Initialize the current length and operations count
+    current_length = 1
+    min_operations = 0
 
-def minOperations(n):
-    """Minimum operations to achieve a number."""
-    return recurse((2, 1), 2, n)
+    while current_length < n:
+        if n % current_length == 0:
+            # If current_length divides n, we can use "Copy All" and "Paste"
+            current_length *= 2
+            min_operations += 1
+        else:
+            # Otherwise, we can only "Paste" the existing content
+            current_length += current_length
+            min_operations += 1
+
+    return min_operations

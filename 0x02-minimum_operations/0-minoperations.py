@@ -16,7 +16,7 @@ def minOperations(n: int) -> int:
     clip = 1
     ops = 2
     while num <= n:
-        print(f"{num}, {clip}  Ops: {ops}")
+        # print(f"{num}, {clip}  Ops: {ops}")
         if num == n:
             return ops
         if n % num == 0:

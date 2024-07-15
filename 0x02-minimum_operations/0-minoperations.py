@@ -1,23 +1,29 @@
 #!/usr/bin/python3
-"""Minimum operations."""
+"""
+Minimum operations.
+
+Try: Copy & Paste
+Then: Paste
+"""
 
 
 def minOperations(n: int) -> int:
-    if n <= 1:
+    """Minimum operations to achieve a number."""
+    if (n <= 1):
         return 0
 
-    # Initialize the current length and operations count
-    current_length = 1
-    min_operations = 0
+    stack = [(2, 1, 2)]
 
-    while current_length < n:
-        if n % current_length == 0:
-            # If current_length divides n, we can use "Copy All" and "Paste"
-            current_length *= 2
-            min_operations += 1
-        else:
-            # Otherwise, we can only "Paste" the existing content
-            current_length += current_length
-            min_operations += 1
+    while len(stack) > 0:
+        num, clip, ops = stack.pop()
+        # print(f"{num}, {clip}  Ops: {ops}")
+        if num == n:
+            return ops
+        # paste only
+        if num + clip <= n:
+            stack.append((num+clip, clip, ops+1))
+        # copy and paste
+        if num * 2 <= n:
+            stack.append((num*2, num, ops+2))
 
-    return min_operations
+    return 0

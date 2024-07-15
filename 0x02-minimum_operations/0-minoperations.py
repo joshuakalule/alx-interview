@@ -12,18 +12,19 @@ def minOperations(n: int) -> int:
     if (n <= 1):
         return 0
 
-    stack = [(2, 1, 2)]
-
-    while len(stack) > 0:
-        num, clip, ops = stack.pop()
-        # print(f"{num}, {clip}  Ops: {ops}")
+    num = 2
+    clip = 1
+    ops = 2
+    while num <= n:
+        print(f"{num}, {clip}  Ops: {ops}")
         if num == n:
             return ops
-        # paste only
-        if num + clip <= n:
-            stack.append((num+clip, clip, ops+1))
-        # copy and paste
-        if num * 2 <= n:
-            stack.append((num*2, num, ops+2))
+        if n % num == 0:
+            clip = num
+            num *= 2
+            ops += 2
+        else:
+            num += clip
+            ops += 1
 
     return 0

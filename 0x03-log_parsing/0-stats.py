@@ -34,7 +34,8 @@ regex = r"{} - \[{} {}\] \"{}\" ({}) ({})".format(
 def print_stats(**kwargs):
     print(f"File size: {kwargs['file_size']}")
     for code, count in kwargs["code_map"].items():
-        print(f"{code}: {count}")
+        if count != 0:
+            print(f"{code}: {count}")
 
 
 if __name__ == "__main__":
@@ -59,5 +60,6 @@ if __name__ == "__main__":
             params['code_map'][status_code] += 1
             params["file_size"] += file_size
     except KeyboardInterrupt:
+        pass
+    finally:
         print_stats(**params)
-        raise

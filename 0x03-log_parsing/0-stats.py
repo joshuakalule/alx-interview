@@ -43,12 +43,12 @@ if __name__ == "__main__":
     n = 0
     try:
         for line in sys.stdin:
-            # increment n
-            n += 1
             # routine check
             if n == 10:
                 n = 0
                 print_stats(**params)
+            else:
+                n += 1
 
             # process line
             if not (m:=re.search(regex, line)):

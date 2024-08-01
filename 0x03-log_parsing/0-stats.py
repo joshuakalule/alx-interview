@@ -19,14 +19,15 @@ params = {
 }
 
 # generate regex
-ip = r"[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}"
+# ip = r"[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}"
+ip = '.*'
 date = r"[0-9]{4}-[0-9]{2}-[0-9]{2}"
 time = r"[0-9]{2}:[0-9]{2}:[0-9]{2}\.[0-9]{6}"
 uri = r"GET /projects/260 HTTP/1\.1"
 code = "|".join([s for s in params["code_map"].keys()])
 size = r"\d*"
 
-regex = r"{} - \[{} {}\] \"{}\" ({}) ({})".format(
+regex = r"{}\s*-\s*\[{} {}\] \"{}\" ({}) ({})".format(
     ip, date, time, uri, code, size
     )
 

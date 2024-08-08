@@ -19,7 +19,7 @@ def validUTF8(data: List[int]) -> bool:
         for h in valid_headers:
             if b.startswith(h):
                 header = h
-        print(f"byte: {byte} b: {b} header: {header} expect: {expect}")
+        # print(f"byte: {byte} b: {b} header: {header} expect: {expect}")
         if header is None:
             return False
 

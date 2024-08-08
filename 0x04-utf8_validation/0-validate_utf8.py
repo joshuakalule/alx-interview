@@ -6,7 +6,7 @@ from typing import List
 
 def validUTF8(data: List[int]) -> bool:
     """Determines if a given dataset represents a valid UTF-8 encoding."""
-    valid_headers = ['10', '0', '110', '1110', '11110']
+    valid_headers = ['0', '110', '1110', '11110', '10']
 
     expect = 0
     for byte in data:
@@ -32,6 +32,6 @@ def validUTF8(data: List[int]) -> bool:
             if expect > 0:
                 return False
             # set expected bytes
-            expect = valid_headers.index(header) - 1
+            expect = valid_headers.index(header)
 
     return True if expect == 0 else False

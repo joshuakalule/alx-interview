@@ -11,7 +11,7 @@ def n_queens(n: int) -> None:
     neg_diag = set()  # (r - c) is the same
     pos_diag = set()  # (r + c) is the same
 
-    placed: list = []
+    placed = []
 
     def backtrack(row: int) -> None:
         """Helper method to backtrack."""

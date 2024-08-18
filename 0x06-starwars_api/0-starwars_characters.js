@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/node
 const request = require('request');
 
 if (process.argv.length !== 3) {
@@ -22,9 +22,9 @@ request(options, async (err, res, body) => {
   const movieData = JSON.parse(body);
   const characters = movieData.characters;
 
-  for (const character of characters) {
+  for (const url of characters) {
     await new Promise((resolve, reject) => {
-      request(character, (error, response, body) => {
+      request(url, (error, response, body) => {
         if (error) {
           reject(error);
         } else {

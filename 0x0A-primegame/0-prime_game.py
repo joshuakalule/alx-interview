@@ -13,6 +13,8 @@ the winner of each game is.
 def isWinner(x, nums):
     """Return: name of the player that won the most rounds"""
     wins_maria = 0
+    if x <= 0 or len(nums) == 0:
+        return None
     for round in range(x):
         n = nums[round]
         if n == 1:
@@ -27,21 +29,25 @@ def isWinner(x, nums):
                 for i in range(p * p, n + 1, p):
                     prime[i] = False
             p += 1
-        # get rid of 0 and 1, not a prime
-        prime = prime[2:]
-        # print(prime)
 
-        if len([is_prime is True for is_prime in prime]) % 2 != 0:
+        options = []
+        # Print all prime numbers
+        for p in range(2, n+1):
+            if prime[p]:
+                # print(p)
+                options.append(p)
+        # print("Len options: ", len(options))
+        if len(options) % 2 != 0:
             wins_maria += 1
-            # print(f"n: {n} maria wins\n")
-        # else:
-        #     print(f"n: {n} maria loses\n")
-    # print("wins_maria: ", wins_maria)
-    if wins_maria > (x / 2):
-        return "Maria"
-    else:
+    #         print(f"n: {n} maria wins\n")
+    #     else:
+    #         print(f"n: {n} maria loses\n")
+    # print("wins_maria: ", wins_maria, "total: ", x)
+    if wins_maria < (x / 2):
         return "Ben"
+    else:
+        return "Maria"
 
 
 if __name__ == '__main__':
-    isWinner(1, [3])
+    isWinner(1, [5])
